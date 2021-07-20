@@ -6,7 +6,6 @@ import "./App.css";
 export const App = () => {
   const [start, setStart] = useState(0);
   const [length, setLength] = useState(0);
-  const [waveLength, setWaveLength] = useState("1310");
   const [modal, setModal] = useState(false);
   const [childData, setChildData] = useState([]);
   const waveLengths = {
@@ -21,10 +20,6 @@ export const App = () => {
     setLength(e.target.value);
   };
 
-  const handleWave = (e) => {
-    setWaveLength(e.target.value);
-  };
-
   const handleModal = () => {
     setModal(true);
   };
@@ -33,8 +28,19 @@ export const App = () => {
   };
 
   const handleCallback = (data) => {
-    setChildData(data);
-    console.log(childData);
+    setChildData([...childData, data]);
+  };
+
+  const result = (waveLength) => {
+    let sumOfSplitters = 0;
+    if (childData.length > 0) {
+      sumOfSplitters = childData.reduce((a, b) => +a + +b);
+    }
+    return (
+      start -
+      sumOfSplitters -
+      (length / 1000) * waveLengths[waveLength]
+    ).toFixed(2);
   };
   return (
     <div className="App">
@@ -56,23 +62,24 @@ export const App = () => {
         onChange={handleLength}
       ></input>
 
-      <form>
-        <label htmlFor="wave">Choose a Wave Length: </label>
-
-        <select name="wave" id="wave" onChange={handleWave}>
-          <option value="1310">1310</option>
-          <option value="1490">1490</option>
-          <option value="1550">1550</option>
-        </select>
-      </form>
       <input type="button" value="add splitter" onClick={handleModal} />
       {modal ? (
-        <Modal show={modal} handleClose={handleAdd}>
-          <Selector callback={handleCallback} />
+        <Modal show={modal}>
+          <Selector callback={handleCallback} handleClose={handleAdd} />
         </Modal>
       ) : null}
       <br />
-      {(start - (length / 1000) * waveLengths[waveLength]).toFixed(2)}
+      <ul>
+        {childData.map((i, idx) => (
+          <li key={(i * idx).toFixed()}>-{i}</li>
+        ))}
+      </ul>
+      <br />
+      <ul>
+        <li>1310:{result(1310)}</li>
+        <li>1490:{result(1490)}</li>
+        <li>1550:{result(1550)}</li>
+      </ul>
     </div>
   );
 };

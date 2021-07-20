@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Selector.css";
 
-export const Selector = ({ callback }) => {
+export const Selector = ({ callback, handleClose }) => {
   const [state, setstate] = useState("95");
   const [attenuation, setAttenuation] = useState(0);
   const splittersValue = {
@@ -22,9 +22,14 @@ export const Selector = ({ callback }) => {
   };
   const handleAttenuation = (e) => {
     setAttenuation(e.target.value);
-    callback(e.target.value);
   };
-  
+
+  const handleSubmit = (e) => {
+    callback(attenuation);
+    handleClose();
+    e.preventDefault();
+  };
+
   return (
     <div className="selector">
       <form>
@@ -48,21 +53,24 @@ export const Selector = ({ callback }) => {
           <option value="50">50/50</option>
         </select>
       </form>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="tails">Choose a side: </label>
-        <select
-          name="tails"
-          id="tails"
-          value={attenuation}
+        <br />
+        <input
+          type="radio"
+          name="attenuation"
+          value={splittersValue[state][0]}
           onChange={handleAttenuation}
-        >
-          <option value={splittersValue[state][0]}>
-            Main - {splittersValue[state][0]}
-          </option>
-          <option value={splittersValue[state][1]}>
-            Side - {splittersValue[state][1]}
-          </option>
-        </select>
+        />
+        <p>Main - {splittersValue[state][0]}</p>
+        <input
+          type="radio"
+          name="attenuation"
+          value={splittersValue[state][1]}
+          onChange={handleAttenuation}
+        />
+        <p>Off - {splittersValue[state][1]}</p>
+        <input type="submit" value="add" />
       </form>
     </div>
   );
