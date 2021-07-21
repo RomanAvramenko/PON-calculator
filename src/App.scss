@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+  color: black;
+}
+
+.app-table {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.app-label {
+  list-style-type: none;
+}
+
+.app-attenuation {
+  list-style-type: none;
+}
+
+.app-attenuation_item {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+.highLight {
+  color: red;
+}

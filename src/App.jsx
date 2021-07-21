@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Selector } from "./components/selector/Selector";
 import { Modal } from "./components/modal/Modal";
-import "./App.css";
+import "./App.scss";
 
 export const App = () => {
   const [start, setStart] = useState(0);
@@ -34,7 +34,9 @@ export const App = () => {
   const result = (waveLength) => {
     let sumOfSplitters = 0;
     if (childData.length > 0) {
-      sumOfSplitters = childData.reduce((a, b) => +a + +b);
+      sumOfSplitters = childData
+        .map((i) => i.attenuation)
+        .reduce((a, b) => +a + +b);
     }
     return (
       start -
@@ -42,9 +44,10 @@ export const App = () => {
       (length / 1000) * waveLengths[waveLength]
     ).toFixed(2);
   };
+
   return (
     <div className="App">
-      <label>Enter start signal: </label>
+      <label>Введите начальный сигнал: </label>
       <input
         type="number"
         id="length"
@@ -53,7 +56,7 @@ export const App = () => {
         onChange={handleStart}
       ></input>
       <br />
-      <label>Enter length of line: </label>
+      <label>Введите протяженность линии: </label>
       <input
         type="number"
         id="length"
@@ -61,19 +64,28 @@ export const App = () => {
         value={length}
         onChange={handleLength}
       ></input>
-
-      <input type="button" value="add splitter" onClick={handleModal} />
+      <br />
+      <input type="button" value="добавить делитель" onClick={handleModal} />
       {modal ? (
         <Modal show={modal}>
           <Selector callback={handleCallback} handleClose={handleAdd} />
         </Modal>
       ) : null}
       <br />
-      <ul>
-        {childData.map((i, idx) => (
-          <li key={(i * idx).toFixed()}>-{i}</li>
-        ))}
-      </ul>
+      <div className="app-table">
+        <ul className="app-attenuation">
+          {childData.map((i) => {
+            const highlight0 = i.tailIndex === 0 ? "highLight" : null;
+            const highlight1 = i.tailIndex === 1 ? "highLight" : null;
+            return (
+              <li key={i.id.toFixed()} className="app-attenuation_item">
+                <div className={highlight0}>{i.label[0]}</div>/
+                <div className={highlight1}>{i.label[1]}</div> -{i.attenuation}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
       <br />
       <ul>
         <li>1310:{result(1310)}</li>
