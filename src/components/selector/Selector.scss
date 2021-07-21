@@ -1,8 +1,31 @@
 .selector {
+  padding: 3em;
   label {
     color: white;
   }
   p {
     color: white;
   }
+  &_splitter{
+    margin: 1em;
+  }
+  &_sides{
+    label {
+      margin-bottom: 1em;
+    }
+    &_side{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin: 1em;
+      p{
+        margin: 0;
+      }
+    }
+  }
+}
+
+.button {
+  height: 3em;
+  width: 8em;
 }
