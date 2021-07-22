@@ -1,31 +1,57 @@
 .selector {
-  padding: 3em;
-  label {
+  padding: 2em;
+  width: 15em;
+  /*   label {
     color: white;
   }
   p {
     color: white;
-  }
-  &_splitter{
-    margin: 1em;
-  }
-  &_sides{
-    label {
+  } */
+  &_splitter {
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &_label {
+      font-size: 1.2em;
       margin-bottom: 1em;
     }
-    &_side{
+    &_select {
+      margin: auto;
+      width: 5em;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      background-color: rgb(255, 255, 255);
+    }
+  }
+  &_tails {
+    &_label {
+      font-size: 1.2em;
+    }
+    &_side {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
-      margin: 1em;
-      p{
+      margin: 1em auto;
+      width: 3em;
+      height: 2em;
+      &_name {
+        font-size: 1.2em;
         margin: 0;
       }
+      &_radio {
+        border: none;
+      }
+    }
+    &_button {
+      border: none;
+      border-radius: 5px;
+      background-color: rgb(170, 252, 207);
+      height: 3em;
+      width: 8em;
+      font-size: 1.2em;
+      cursor: pointer;
     }
   }
-}
-
-.button {
-  height: 3em;
-  width: 8em;
 }

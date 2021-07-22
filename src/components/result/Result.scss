@@ -1,0 +1,27 @@
+.result {
+  height: 10em;
+  padding: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
+  background-color: rgba(170, 252, 207, 0.9);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  &_list {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    &_item {
+      &_label {
+        margin-top: 0;
+        font-size: 1.2em;
+      }
+      &_value {
+        font-size: 1.5em;
+      }
+    }
+  }
+}

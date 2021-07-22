@@ -29,12 +29,15 @@ export const Selector = ({ callback, handleClose }) => {
     handleClose();
     e.preventDefault();
   };
-  
+
   return (
     <div className="selector">
       <form className="selector_splitter">
-        <label htmlFor="splitters">Выберете делитель: </label>
+        <label className="selector_splitter_label" htmlFor="splitters">
+          Выберете делитель
+        </label>
         <select
+          className="selector_splitter_select"
           name="splitters"
           id="splitters"
           value={splitter}
@@ -47,12 +50,13 @@ export const Selector = ({ callback, handleClose }) => {
           ))}
         </select>
       </form>
-      <form className="selector_sides" onSubmit={handleSubmit}>
-        <label htmlFor="tails">Выберете сторону: </label>
+      <form className="selector_tails" onSubmit={handleSubmit}>
+        <label  className="selector_tails_label" htmlFor="tails">Выберете сторону: </label>
         {splittersValue[splitter].tails.map((i, idx) => (
-          <div key={idx} className="selector_sides_side">
-            <p>{i}</p>
+          <div key={idx} className="selector_tails_side">
+            <p className="selector_tails_side_name">{i}</p>
             <input
+            className="selector_tails_side_radio"
               type="radio"
               name="attenuation"
               value={i}
@@ -60,7 +64,7 @@ export const Selector = ({ callback, handleClose }) => {
             />
           </div>
         ))}
-        <input className="button" type="submit" value="добавить" />
+        <input className="selector_tails_button" type="submit" value="добавить" />
       </form>
     </div>
   );
