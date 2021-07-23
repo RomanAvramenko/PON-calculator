@@ -51,20 +51,44 @@ export const Selector = ({ callback, handleClose }) => {
         </select>
       </form>
       <form className="selector_tails" onSubmit={handleSubmit}>
-        <label  className="selector_tails_label" htmlFor="tails">Выберете сторону: </label>
-        {splittersValue[splitter].tails.map((i, idx) => (
-          <div key={idx} className="selector_tails_side">
-            <p className="selector_tails_side_name">{i}</p>
+        <label className="selector_tails_label" htmlFor="tails">
+          Выберете сторону:
+        </label>
+        {splittersValue[splitter].tails.length === 1 ? (
+          <div key="0" className="selector_tails_side">
+            <p className="selector_tails_side_name">
+              {splittersValue[splitter].label}: -
+              {splittersValue[splitter].tails[0]}
+            </p>
             <input
-            className="selector_tails_side_radio"
+              className="selector_tails_side_radio"
               type="radio"
               name="attenuation"
-              value={i}
+              value={splittersValue[splitter].tails[0]}
               onChange={handleAttenuation}
             />
           </div>
-        ))}
-        <input className="selector_tails_button" type="submit" value="добавить" />
+        ) : (
+          splittersValue[splitter].tails.map((i, idx) => (
+            <div key={idx} className="selector_tails_side">
+              <p className="selector_tails_side_name">
+                {splittersValue[splitter].label.split("/")[idx]}: -{i}
+              </p>
+              <input
+                className="selector_tails_side_radio"
+                type="radio"
+                name="attenuation"
+                value={i}
+                onChange={handleAttenuation}
+              />
+            </div>
+          ))
+        )}
+        <input
+          className="selector_tails_button"
+          type="submit"
+          value="добавить"
+        />
       </form>
     </div>
   );
