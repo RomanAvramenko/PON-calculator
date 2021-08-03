@@ -1,9 +1,10 @@
 import React from "react";
-import './Inputs.scss'
+import "./Inputs.scss";
 
 export const Inputs = ({
   length,
   handleLength,
+  handleMapModal,
   start,
   handleStart,
   count,
@@ -15,6 +16,7 @@ export const Inputs = ({
       <div className="inputs_item">
         <label>начальный сигнал: </label>
         <input
+          className="inputs_item_input"
           type="number"
           id="length"
           name="length"
@@ -25,20 +27,30 @@ export const Inputs = ({
       </div>
       <div className="inputs_item">
         <label>протяженность линии: </label>
-        <input
-          type="number"
-          id="length"
-          name="length"
-          min="0"
-          max="30000"
-          value={length}
-          onChange={handleLength}
-        />
+        <div className="inputs_item_length">
+          <input
+            className="inputs_item_length_input"
+            type="number"
+            id="length"
+            name="length"
+            min="0"
+            max="30000"
+            value={length}
+            onChange={handleLength}
+          />
+          <input
+            className="inputs_item_length_map"
+            type="button"
+            value=""
+            onClick={handleMapModal}
+          />
+        </div>
         метров
       </div>
       <div className="inputs_item">
         <label>количество сварок: </label>
         <input
+          className="inputs_item_input"
           type="number"
           id="length"
           name="length"
