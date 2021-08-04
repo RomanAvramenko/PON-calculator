@@ -10,7 +10,7 @@ import "./App.scss";
 export const App = () => {
   const [start, setStart] = useState(0);
   const [length, setLength] = useState(0);
-  const [count, setCount] = useState(0);
+  const [splices, setSplices] = useState(0);
   const [modal, setModal] = useState(false);
   const [mapModal, setMapModal] = useState(false);
   const [childData, setChildData] = useState([]);
@@ -27,12 +27,12 @@ export const App = () => {
   };
 
   const handleMapLength = (mapLength) => {
-    setLength(mapLength)
+    setLength(mapLength);
     setMapModal(false);
   };
 
   const handleCount = (e) => {
-    setCount(e.target.value);
+    setSplices(e.target.value);
   };
 
   const handleModal = () => {
@@ -44,6 +44,7 @@ export const App = () => {
 
   const handleCallback = (data) => {
     setChildData([...childData, data]);
+    setSplices(+splices +1);
   };
 
   const handleChange = (data) => {
@@ -58,7 +59,7 @@ export const App = () => {
         handleMapModal={handleMapModal}
         start={start}
         handleStart={handleStart}
-        count={count}
+        count={splices}
         handleCount={handleCount}
         handleModal={handleModal}
       />
@@ -69,11 +70,16 @@ export const App = () => {
       ) : null}
       {mapModal ? (
         <Modal show={mapModal}>
-          <Map handleMapLength={handleMapLength}/>
+          <Map handleMapLength={handleMapLength} />
         </Modal>
       ) : null}
       <SplitterList data={childData} change={handleChange} />
-      <Result data={childData} start={start} length={length} splices={count} />
+      <Result
+        data={childData}
+        start={start}
+        length={length}
+        splices={splices}
+      />
     </div>
   );
 };

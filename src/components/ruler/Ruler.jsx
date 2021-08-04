@@ -147,7 +147,7 @@ export const Ruler = ({ callback }) => {
         L.circleMarker(this._movingLatLong, this.options.circleMarker)
           .bindTooltip(text, {
             sticky: true,
-            offset: L.point(0, -40),
+            offset: L.point(0, 0),
             className: "moving-tooltip",
           })
           .addTo(this._tempPoint)
