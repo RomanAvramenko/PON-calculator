@@ -70,6 +70,7 @@ export const Selector = ({ callback, handleClose }) => {
           </div>
         ) : (
           splittersValue[splitter].tails.map((i, idx) => (
+            
             <div key={idx} className="selector_tails_side">
               <p className="selector_tails_side_name">
                 {splittersValue[splitter].label.split("/")[idx]}: -{i}

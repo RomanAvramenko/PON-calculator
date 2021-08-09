@@ -51,6 +51,7 @@ export const Inputs = ({
         <label>количество сварок: </label>
         <input
           className="inputs_item_input"
+          min="0"
           type="number"
           id="length"
           name="length"

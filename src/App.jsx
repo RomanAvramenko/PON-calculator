@@ -27,7 +27,7 @@ export const App = () => {
   };
 
   const handleMapLength = (mapLength) => {
-    setLength(mapLength);
+    setLength(+mapLength);
     setMapModal(false);
   };
 

@@ -7,7 +7,8 @@ export const Ruler = ({ callback }) => {
   const map = useMap();
   const mapEvents = useMapEvents({
     click: () => {
-      callback(+mapEvents._container.innerText.slice(-19, -13));
+      const lengthValue = mapEvents._container.textContent.slice(-16, -10).match(/\d+/g);
+      callback(!!lengthValue && lengthValue.join(''));
     },
   });
 

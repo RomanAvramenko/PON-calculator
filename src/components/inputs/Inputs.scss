@@ -28,6 +28,7 @@
         border-radius: 5px;
       }
       &_map {
+        -webkit-appearance: none;
         padding: 0;
         margin: 0 0.7em;
         border: none;
@@ -35,7 +36,8 @@
         border-radius: 3px;
         background-color: white;
         background-image: url("../../dist/planet-earth.png");
-        background-size: cover;
+        background-repeat: no-repeat;
+        background-size: contain;
         cursor: pointer;
       }
     }
