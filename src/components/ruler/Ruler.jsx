@@ -7,10 +7,24 @@ export const Ruler = ({ callback }) => {
   const map = useMap();
   const mapEvents = useMapEvents({
     click: () => {
-      const lengthValue = mapEvents._container.textContent.slice(-16, -10).match(/\d+/g);
-      callback(!!lengthValue && lengthValue.join(''));
+      const lengthValue = mapEvents._container.textContent
+        .slice(-16, -10)
+        .match(/\d+/g);
+      callback(!!lengthValue && lengthValue.join(""));
     },
   });
+
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        map.panTo(
+          new L.LatLng(position.coords.latitude, position.coords.longitude)
+        );
+      });
+    } else {
+      map.panTo(new L.LatLng(50.4421237150998, 30.520453831008716));
+    }
+  }, [map]);
 
   useEffect(() => {
     if (!map) return;

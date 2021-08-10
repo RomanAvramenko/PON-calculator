@@ -9,10 +9,11 @@ export const Map = ({ handleMapLength }) => {
   const callback = (data) => {
     setLength(data);
   };
+
   return (
     <div id="mapid">
       <MapContainer
-        center={[49.24407617840101, 30.820395896116903]}
+        center={[50.4421237150998, 30.520453831008716]}
         zoom={13}
         scrollWheelZoom={true}
       >
