@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { splittersValue } from "../../splittersValue";
 import "./Selector.scss";
 
-export const Selector = ({ callback, handleClose }) => {
+const Selector = ({ callback, handleClose }) => {
   const [splitter, setSplitter] = useState(0);
   const [attenuation, setAttenuation] = useState(0);
 
@@ -94,3 +94,5 @@ export const Selector = ({ callback, handleClose }) => {
     </div>
   );
 };
+
+export default Selector

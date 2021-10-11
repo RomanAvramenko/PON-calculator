@@ -1,7 +1,7 @@
 import React from "react";
 import "./Result.scss";
 
-export const Result = ({ data, start, length, splices }) => {
+const Result = ({ data, start, length, splices }) => {
   const waveLengths = {
     1310: 0.33,
     1490: 0.24,
@@ -39,3 +39,5 @@ export const Result = ({ data, start, length, splices }) => {
     </div>
   );
 };
+
+export default Result

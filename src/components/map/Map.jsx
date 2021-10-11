@@ -3,7 +3,7 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import { Ruler } from "../ruler/Ruler";
 import "./Map.scss";
 
-export const Map = ({ handleMapLength }) => {
+const Map = ({ handleMapLength }) => {
   const [length, setLength] = useState(0);
 
   const callback = (data) => {
@@ -29,3 +29,5 @@ export const Map = ({ handleMapLength }) => {
     </div>
   );
 };
+
+export default Map;

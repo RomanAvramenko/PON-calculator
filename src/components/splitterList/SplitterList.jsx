@@ -1,7 +1,7 @@
 import React from "react";
 import "./SplitterList.scss";
 
-export const SplitterList = ({ data, change }) => {
+const SplitterList = ({ data, change }) => {
   const handleDelete = (id) => {
     change(data.filter((el) => el.id !== id));
   };
@@ -77,3 +77,5 @@ export const SplitterList = ({ data, change }) => {
     </div>
   );
 };
+
+export default SplitterList

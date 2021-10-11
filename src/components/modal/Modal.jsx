@@ -1,7 +1,7 @@
 import React from "react";
 import "./Modal.scss";
 
-export const Modal = ({ show, children }) => {
+const Modal = ({ show, children }) => {
   const showHideClassName = show ? "modal display-block" : "display-none";
   return (
     <div className={showHideClassName}>
@@ -11,3 +11,5 @@ export const Modal = ({ show, children }) => {
     </div>
   );
 };
+
+export default Modal

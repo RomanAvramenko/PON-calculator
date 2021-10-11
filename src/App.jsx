@@ -1,11 +1,16 @@
-import { useState } from "react";
-import { Selector } from "./components/selector/Selector";
-import { Modal } from "./components/modal/Modal";
-import { Result } from "./components/result/Result";
-import { SplitterList } from "./components/splitterList/SplitterList";
-import { Inputs } from "./components/inputs/Inputs";
-import { Map } from "./components/map/Map";
+import { useState, lazy, Suspense } from "react";
 import "./App.scss";
+
+const Modal = lazy(() => import("./components/modal/Modal"));
+const Selector = lazy(() => import("./components/selector/Selector"));
+const Result = lazy(() => import("./components/result/Result"));
+const SplitterList = lazy(() =>
+  import("./components/splitterList/SplitterList")
+);
+const Inputs = lazy(() => import("./components/inputs/Inputs"));
+const Map = lazy(() => import("./components/map/Map"));
+
+const renderLoader = () => <p>Loading</p>;
 
 export const App = () => {
   const [start, setStart] = useState(0);
@@ -44,7 +49,7 @@ export const App = () => {
 
   const handleCallback = (data) => {
     setChildData([...childData, data]);
-    setSplices(+splices +1);
+    setSplices(+splices + 1);
   };
 
   const handleChange = (data) => {
@@ -53,33 +58,35 @@ export const App = () => {
 
   return (
     <div className="App">
-      <Inputs
-        length={length}
-        handleLength={handleLength}
-        handleMapModal={handleMapModal}
-        start={start}
-        handleStart={handleStart}
-        count={splices}
-        handleCount={handleCount}
-        handleModal={handleModal}
-      />
-      {modal ? (
-        <Modal show={modal}>
-          <Selector callback={handleCallback} handleClose={handleAdd} />
-        </Modal>
-      ) : null}
-      {mapModal ? (
-        <Modal show={mapModal}>
-          <Map handleMapLength={handleMapLength} />
-        </Modal>
-      ) : null}
-      <SplitterList data={childData} change={handleChange} />
-      <Result
-        data={childData}
-        start={start}
-        length={length}
-        splices={splices}
-      />
+      <Suspense fallback={renderLoader()}>
+        {modal && (
+          <Modal show={modal}>
+            <Selector callback={handleCallback} handleClose={handleAdd} />
+          </Modal>
+        )}
+        {mapModal ? (
+          <Modal show={mapModal}>
+            <Map handleMapLength={handleMapLength} />
+          </Modal>
+        ) : null}
+        <Inputs
+          length={length}
+          handleLength={handleLength}
+          handleMapModal={handleMapModal}
+          start={start}
+          handleStart={handleStart}
+          count={splices}
+          handleCount={handleCount}
+          handleModal={handleModal}
+        />
+        <SplitterList data={childData} change={handleChange} />
+        <Result
+          data={childData}
+          start={start}
+          length={length}
+          splices={splices}
+        />
+      </Suspense>
     </div>
   );
 };

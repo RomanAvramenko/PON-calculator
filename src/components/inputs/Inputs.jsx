@@ -1,7 +1,7 @@
 import React from "react";
 import "./Inputs.scss";
 
-export const Inputs = ({
+const Inputs = ({
   length,
   handleLength,
   handleMapModal,
@@ -69,3 +69,5 @@ export const Inputs = ({
     </div>
   );
 };
+
+export default Inputs
