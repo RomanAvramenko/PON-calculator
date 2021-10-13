@@ -14,19 +14,19 @@ const Inputs = ({
   return (
     <div className="inputs">
       <div className="inputs_item">
-        <label>начальный сигнал: </label>
+        <label htmlFor="signal">начальный сигнал: </label>
         <input
           className="inputs_item_input"
           type="number"
-          id="length"
-          name="length"
+          id="signal"
+          name="signal"
           value={start}
           onChange={handleStart}
         />
         dBm
       </div>
       <div className="inputs_item">
-        <label>протяженность линии: </label>
+        <label htmlFor="length">протяженность линии: </label>
         <div className="inputs_item_length">
           <input
             className="inputs_item_length_input"
@@ -48,13 +48,13 @@ const Inputs = ({
         метров
       </div>
       <div className="inputs_item">
-        <label>количество сварок: </label>
+        <label htmlFor="splices">количество сварок: </label>
         <input
           className="inputs_item_input"
           min="0"
           type="number"
-          id="length"
-          name="length"
+          id="splices"
+          name="splices"
           value={count}
           onChange={handleCount}
         />
@@ -70,4 +70,4 @@ const Inputs = ({
   );
 };
 
-export default Inputs
+export default Inputs;
